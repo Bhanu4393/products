@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Makeup Store</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Makeup Product Detail & Users</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </head>
 <body>
-    <h1>Makeup Products</h1>
-    <div id="products"></div>
-    <script src="app.js"></script>
+  <h1 id="product-name"></h1>
+  <div id="product-images" class="images"></div>
+  <p><strong>Description:</strong> <span id="description"></span></p>
+  <p><strong>Brand:</strong> <span id="brand"></span></p>
+  <p><strong>Category:</strong> <span id="category"></span></p>
+  <p><strong>Price:</strong> ₹<span id="price"></span></p>
+  <p><strong>Discount:</strong> <span id="discount"></span>%</p>
+  <p><strong>Stock:</strong> <span id="stock"></span></p>
+  <p><strong>Rating:</strong> <span id="rating"></span></p>
+  <p><strong>SKU:</strong> <span id="sku"></span></p>
+  <p><strong>Weight:</strong> <span id="weight"></span></p>
+  <p><strong>Dimensions:</strong> <span id="dimensions"></span></p>
+  <p><strong>Warranty:</strong> <span id="warranty"></span></p>
+  <p><strong>Shipping Info:</strong> <span id="shipping"></span></p>
+  <p><strong>Availability:</strong> <span id="availability"></span></p>
+  <p><strong>Return Policy:</strong> <span id="returnPolicy"></span></p>
+  <p><strong>Minimum Order:</strong> <span id="minOrder"></span></p>
+  <p><strong>Created At:</strong> <span id="createdAt"></span></p>
+  <p><strong>Updated At:</strong> <span id="updatedAt"></span></p>
+  <p><strong>Barcode:</strong> <span id="barcodeVal"></span></p>
+  <div id="qrcode"></div>
+
+  <hr />
+
+  <h2>Users List</h2>
+  <div id="user-list" class="user-list"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>
