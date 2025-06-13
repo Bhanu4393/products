@@ -3,38 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Makeup Product Detail & Users</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <title>Makeup Product & Users</title>
+
+  <!-- Internal CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      color: #333;
+      margin: 20px;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 6px 0;
+      line-height: 1.5;
+    }
+
+    .images img {
+      height: 150px;
+      margin-right: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .user-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .user-card {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 260px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .user-card:hover {
+      transform: translateY(-4px);
+    }
+
+    #qrcode {
+      margin-top: 15px;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    ul {
+      margin-top: 12px;
+      padding-left: 18px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+    }
+  </style>
 </head>
 <body>
-  <h1 id="product-name"></h1>
-  <div id="product-images" class="images"></div>
-  <p><strong>Description:</strong> <span id="description"></span></p>
-  <p><strong>Brand:</strong> <span id="brand"></span></p>
-  <p><strong>Category:</strong> <span id="category"></span></p>
-  <p><strong>Price:</strong> ₹<span id="price"></span></p>
-  <p><strong>Discount:</strong> <span id="discount"></span>%</p>
-  <p><strong>Stock:</strong> <span id="stock"></span></p>
-  <p><strong>Rating:</strong> <span id="rating"></span></p>
-  <p><strong>SKU:</strong> <span id="sku"></span></p>
-  <p><strong>Weight:</strong> <span id="weight"></span></p>
-  <p><strong>Dimensions:</strong> <span id="dimensions"></span></p>
-  <p><strong>Warranty:</strong> <span id="warranty"></span></p>
-  <p><strong>Shipping Info:</strong> <span id="shipping"></span></p>
-  <p><strong>Availability:</strong> <span id="availability"></span></p>
-  <p><strong>Return Policy:</strong> <span id="returnPolicy"></span></p>
-  <p><strong>Minimum Order:</strong> <span id="minOrder"></span></p>
-  <p><strong>Created At:</strong> <span id="createdAt"></span></p>
-  <p><strong>Updated At:</strong> <span id="updatedAt"></span></p>
-  <p><strong>Barcode:</strong> <span id="barcodeVal"></span></p>
-  <div id="qrcode"></div>
 
-  <hr />
+  <h1>Essence Mascara Lash Princess</h1>
 
-  <h2>Users List</h2>
-  <div id="user-list" class="user-list"></div>
+  <div class="images">
+    <img src="https://m.media-amazon.com/images/I/61ZKDw6CZrL._SX679_.jpg" alt="Mascara 1">
+    <img src="https://m.media-amazon.com/images/I/61Hh5N8fFPL._SX679_.jpg" alt="Mascara 2">
+    <img src="https://m.media-amazon.com/images/I/61Q95QURpXL._SX679_.jpg" alt="Mascara 3">
+    <img src="https://m.media-amazon.com/images/I/61YDY6vN8mL._SX679_.jpg" alt="Mascara 4">
+    <img src="https://m.media-amazon.com/images/I/61ZKDw6CZrL._SX679_.jpg" alt="Mascara 5">
+  </div>
 
-  <script src="app.js"></script>
+  <p><strong>Description:</strong> The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.</p>
+
+  <p><strong>Brand:</strong> Essence</p>
+  <p><strong>Category:</strong> beauty</p>
+  <p><strong>Price:</strong> ₹9.99</p>
+  <p><strong>Discount:</strong> 10.48%</p>
+  <p><strong>Stock:</strong> 99</p>
+  <p><strong>Rating:</strong> 2.56</p>
+  <p><strong>SKU:</strong> BEA-ESS-ESS-001</p>
+  <p><strong>Weight:</strong> 4g</p>
+  <p><strong>Dimensions:</strong> 15.14 × 13.08 × 22.99 cm</p>
+  <p><strong>Warranty:</strong> 1 week warranty</p>
+  <p><strong>Shipping Info:</strong> Ships in 3–5 business days</p>
+  <p><strong>Availability:</strong> In Stock</p>
+  <p><strong>Return Policy:</strong> No return policy</p>
+  <p><strong>Minimum Order:</strong> 48</p>
+
+  <p><strong>Created At:</strong> 2025-04-30T09:41:02.053Z</p>
+  <p><strong>Updated At:</strong> 2025-04-30T09:41:02.053Z</p>
+  <p><strong>Barcode:</strong> 5784719087687</p>
+  <div id="qrcode">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=5784719087687&size=100x100" alt="QR Code">
+  </div>
+
+  <h2>User List (from fakestoreapi)</h2>
+  <div class="user-list" id="userList">
+    <!-- Fetched users will be inserted here -->
+  </div>
+
+  <script>
+    fetch('https://fakestoreapi.in/api/users')
+      .then(res => res.json())
+      .then(data => {
+        const userList = document.getElementById('userList');
+        data.users.forEach(user => {
+          const card = document.createElement('div');
+          card.className = 'user-card';
+          card.innerHTML = `
+            <h3>${user.name.firstname} ${user.name.lastname}</h3>
+            <p><strong>Email:</strong> ${user.email}</p>
+            <p><strong>Username:</strong> ${user.username}</p>
+            <p><strong>Phone:</strong> ${user.phone}</p>
+            <p><strong>City:</strong> ${user.address.city}</p>
+            <p><strong>Street:</strong> ${user.address.street}</p>
+          `;
+          userList.appendChild(card);
+        });
+      });
+  </script>
+
 </body>
 </html>
