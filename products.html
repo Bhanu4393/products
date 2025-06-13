@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    nav { background: #222; padding: 10px; }
+    nav a { color: white; margin-right: 15px; text-decoration: none; }
+    .logout-btn { float: right; color: red; cursor: pointer; }
+    .card { border: 1px solid #ddd; padding: 10px; margin: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <span class="logout-btn" onclick="logout()">Logout</span>
+  </nav>
+
+  <h2>Our Products</h2>
+
+  <div class="card">Makeup Product 1 - Mascara</div>
+  <div class="card">Makeup Product 2 - Lipstick</div>
+  <div class="card">Makeup Product 3 - Foundation</div>
+
+  <script>
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) window.location.href = "login.html";
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
